@@ -1,0 +1,43 @@
+(env
+ (dev
+  (flags (:standard -w -27-26-32))))
+
+(library
+ (name astro)
+ (modules astro))
+
+(library
+ (name lib)
+ (modules lib)
+ (libraries unix astro))
+
+(library
+ (name vsop87)
+ (modules vsop87))
+
+(library
+ (name stars)
+ (modules stars))
+
+(library
+ (name planets)
+ (modules planets)
+ (libraries astro vsop87))
+
+(executable
+ (name main)
+ (promote (until-clean))
+ (modules main)
+ (libraries graphics astro lib planets vsop87))
+
+(executable
+ (name ciel)
+ (promote (until-clean))
+ (modules ciel)
+ (libraries graphics astro lib planets vsop87 stars))
+
+(executable
+ (name ronde)
+ (promote (until-clean))
+ (modules ronde)
+ (libraries graphics astro lib planets vsop87 stars))
